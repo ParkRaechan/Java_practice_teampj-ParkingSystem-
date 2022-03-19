@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class settlement {
+public class settlement_1 {
 	
 	
 	
@@ -74,7 +74,8 @@ public class settlement {
 			if(allDayPay.get(i)!= null) {
 				Integer a = allDayPay.get(i);
 				if(a!= null) {
-					System.out.print(i+")"+a+"원\t");  // i = 일수 출력
+					int j = i+1;
+					System.out.print(j+")"+a+"원\t");  // i = 일수 출력
 				}
 				
 			}
