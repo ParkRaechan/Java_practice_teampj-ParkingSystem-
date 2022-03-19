@@ -3,9 +3,10 @@ package mingikim;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
+import Joonyeong.tower;
 import Parking01.main;
 
-public class settlement { // c s
+public class settlement extends tower{ // c s
 	
 //	* 타워 주차 프로그램 [ 주차관리인 만 사용O  일반고객X ] 
 //			조건1 : 3층 짜리 주차타워일 경우 층별 4개씩 주차 가능 
@@ -40,37 +41,39 @@ public class settlement { // c s
 			// 뒤에서 앞을뺀다
 	public static void main(String[] args) {
 		
-//		int = parkStart.untill(parkEnd , ChronoUnit.)
-//		parkStart.untill(parkEnd , ChronoUnit
-//		parkStart.untill(parkEnd , ChronoUnit
+		parkStart().untill(parkEnd() , choronUnit.);
 		
-		int count = 0;
-						
-	if(Day == 0) {	// Day의 차가 0이면 하루가 안지난것	 
-			분 -= 30;
-			while(true) {
-				if( 분 > 10) {
-					분 -= 10;
-					count++;
-				}else {
-					break;
-				} 
-			} 	int 주차비용 = count * 1000;
-		if( 주차비용 > 받을돈 ) { // 주차비용이 받은돈 보다 적다면 돈이 부족하다
-			
-			return -1;	 
-		 } 
-		else if(주차비용 < 받을돈) { // 주차비용이 받은돈 보다 많으면 거스름돈 주기
-			int 거스름돈 = 받을돈-주차비용;
-			return 거스름돈
-		}
-	
-	 else if(Day > 0) { // 추
-			 int 주차비용 = Day * 50000;
-			 if()
-		 }
-	}
-	
+		//int 날 = getParkStart().untill(getParkEnd() , ChronoUnit.DAYS);
+//		int 시 = parkStart.untill(parkEnd , ChronoUnit
+//		int 분 parkStart.untill(parkEnd , ChronoUnit
+		
+//		int count = 0;
+//						
+//	if(Day == 0) {	// Day의 차가 0이면 하루가 안지난것	 
+//			분 -= 30;
+//			while(true) {
+//				if( 분 > 10) {
+//					분 -= 10;
+//					count++;
+//				}else {
+//					break;
+//				} 
+//			} 	int 주차비용 = count * 1000;
+//		if( 주차비용 > 받을돈 ) { // 주차비용이 받은돈 보다 적다면 돈이 부족하다
+//			
+//			return -1;	 
+//		 } 
+//		else if(주차비용 < 받을돈) { // 주차비용이 받은돈 보다 많으면 거스름돈 주기
+//			int 거스름돈 = 받을돈-주차비용;
+//			return 거스름돈
+//		}
+//	
+//	 else if(Day > 0) { // 추
+//			 int 주차비용 = Day * 50000;
+//			 if()
+//		 }
+//	}
+//	
 		
 		
 		
