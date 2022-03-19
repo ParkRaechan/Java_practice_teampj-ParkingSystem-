@@ -40,8 +40,8 @@ public class tower {
 
 	public void 차량삭제(String carNumber) { // 차량삭제 s
 		for(int i=0; i<12; i++) { // for s
-			if(parkSpace[i][2].equals(carNumber)) { // 차량번호 일치하면
-				parkSpace[i] = "[ ]"; return;
+			if(main.park[i].equals("[" + carNumber + "]")) { // 차량번호 일치하면
+				main.park[i] = "[ ]"; return;
 			}
 		} // for e
 	} // 차량삭제 e
