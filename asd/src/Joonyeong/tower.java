@@ -10,9 +10,9 @@ public class tower { // c s
 							"[ ]" , "[ ]" , "[ ]" , "[ ]" , };
 		// 차량이 차면 "[o]" 비면 "[ ]"
 	//입차 시간
-	ZonedDateTime parkStart = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+	static ZonedDateTime parkStart = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
 	//출차 시간
-	ZonedDateTime parkEnd = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+	static ZonedDateTime parkEnd = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
 	
 	public String[] getParkSpace() {
 		return parkSpace;
@@ -23,7 +23,7 @@ public class tower { // c s
 	public ZonedDateTime getParkStart() {
 		return parkStart;
 	}
-	public ZonedDateTime getParkEnd() {
+	public  ZonedDateTime getParkEnd() {
 		return parkEnd;
 	}
 	

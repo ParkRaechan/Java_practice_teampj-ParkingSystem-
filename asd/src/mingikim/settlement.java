@@ -1,5 +1,7 @@
 package mingikim;
 
+import java.io.ObjectInputStream.GetField;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
@@ -40,10 +42,8 @@ public class settlement extends tower{ // c s
 			// 날짜객체1.untill( 날짜객체2 , ChronoUnit.시간단위 )  :  두 날짜간 단위기준으로 차이
 			// 뒤에서 앞을뺀다
 	public static void main(String[] args) {
-		
-		parkStart().untill(parkEnd() , choronUnit.);
-		
-		//int 날 = getParkStart().untill(getParkEnd() , ChronoUnit.DAYS);
+			
+		//zonedDateTime.until(getParkEnd(), ChronoUnit.DAYS);
 //		int 시 = parkStart.untill(parkEnd , ChronoUnit
 //		int 분 parkStart.untill(parkEnd , ChronoUnit
 		
