@@ -1,5 +1,6 @@
 package Parking01;
 
+import java.io.FileOutputStream;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -36,14 +37,34 @@ public class tower {
 		carnum = carNumber; // 차번호 인자로 받어서 필드의 저장
 		parklo = index;		// 위치받아서 필드에 저장
 		main.park[index] = "[" + carNumber + "]"; 
+		carSave();
 	} // 차량등록 e
 
 	public void 차량삭제(String carNumber) { // 차량삭제 s
 		for(int i=0; i<12; i++) { // for s
-			if(main.park[i].equals("[" + carNumber + "]")) { // 차량번호 일치하면
-				main.park[i] = "[ ]"; return;
+			if(main.park[i].equals("[" + carNumber + "]")) {
+				main.park[i] = "[ ]"; 
+				carSave();
+				return;
 			}
 		} // for e
 	} // 차량삭제 e
+	
+	public boolean carSave(){// 차량파일 저장 시작
+		FileOutputStream fileOutputStream;
+		try {
+			fileOutputStream = new FileOutputStream("C:/Users/Public/주차현황.txt");
+		String parkOutput = null;
+		for(int i = 0; i<12; i++) {
+		parkOutput = main.park[i]+","; // 쉼표로 구분
+		fileOutputStream.write(parkOutput.getBytes()); 
+		}
+		fileOutputStream.close();
+		return true; // 저장 실패
+	}catch (Exception e) {
+				e.printStackTrace();
+	 return false;
+	} // 차량파일 저장 e
+}
 }
 

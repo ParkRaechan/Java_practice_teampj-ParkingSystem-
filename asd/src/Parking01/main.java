@@ -1,5 +1,7 @@
 package Parking01;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,20 +9,27 @@ public class main {
 	static String park[] = {"[ ]","[ ]","[ ]","[ ]",
 							"[ ]","[ ]","[ ]","[ ]",
 							"[ ]","[ ]","[ ]","[ ]"};
+	static ArrayList<tower> tow = new ArrayList<tower>();
 	public static void main(String[] args) {
-		ArrayList<tower> tow = new ArrayList<tower>();
-	
-		Scanner sc = new Scanner(System.in);
+			
 		while(true) {
+			Scanner sc = new Scanner(System.in);
 			try {
 				System.out.println("-------------------- 주차 프로그램 [현황]---------------");
 				//주차 현황 출력
-				for(int i = 0; i < park.length ; i++) {
-						System.out.print(park[i]);
-						if(i %  4 == 3) {
-							System.out.println();
-						}
-				}						
+				FileInputStream input = new FileInputStream("C:/Users/Public/주차현황.txt");
+				byte[] readBuffer = new byte[1024]; // 바이트배열선
+				input.read(readBuffer); // 바이트를 바이트배열의 저장
+				String file = new String(readBuffer); // 
+				String[] afile = file.split(",");
+			
+				for(int i = 0; i < 12; i++) {
+					System.out.print(afile[i]);
+					if(i % 4 == 3) {
+						System.out.println();
+					}
+				}
+							
 				System.out.println("----------------------------------------------------");
 				System.out.println("1.주차등록 2.출차 3.매출확인"); int ch = sc.nextInt();// 선택 입력받기
 				
@@ -36,7 +45,13 @@ public class main {
 					}
 										
 				}else if(ch == 2) {	// 출자등록
-					
+					System.out.println("차량번호"); String carnum = sc.next();
+					for(tower temp : tow) {
+						if(temp.carnum == carnum) {
+							temp.차량삭제(carnum);
+							break;
+						}
+					}
 				}else if(ch == 3) { // 매출확인
 					
 				}else { // 그외
