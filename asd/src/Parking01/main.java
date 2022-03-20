@@ -21,7 +21,7 @@ public class main {
 				int i = 0;
 				for(String tmep : park) {//출력
 					System.out.print(tmep);
-					if(i % 4 == 3) {
+					if(i % 4 == 3) {// 줄바꿈
 						System.out.println();
 					}
 					i++;
@@ -38,24 +38,33 @@ public class main {
 					machine.주차등록(차량번호, 주차위치, now);										
 				}else if(ch == 2) {	// 주차삭제
 					System.out.println("차량번호: "); String 차량번호 = sc.next();
-					ZonedDateTime endnow = ZonedDateTime.now();
-					//요금계산
-					int 요금 = machine.요금계산(차량번호, endnow);
-					if(요금 < 0) {
-						System.out.println("계산실패");
-					}else {
-						System.out.println("주차요금: " + 요금);
+					boolean pass = false;
+					for(tower temp : tow) {
+						if(temp.get차번호().equals(차량번호)) {
+							pass = true;
+							break;
+						}
 					}
-					System.out.println("입금: "); int 돈 = sc.nextInt();
-					//요금정산
-					if(요금 <= 돈) {
-						machine.주차삭제(차량번호);
-						allDayPay.add(요금);
-						System.out.println("거스름돈: " + (돈 - 요금));
-						System.out.println("감사합니다 즐거운 하루되세요");
-					}else {
-						System.out.println("돈 부족");
-					}					
+					if(pass) {
+						ZonedDateTime endnow = ZonedDateTime.now();
+						//요금계산
+						int 요금 = machine.요금계산(차량번호, endnow);
+						if(요금 < 0) {
+							System.out.println("계산실패");
+						}else {
+							System.out.println("주차요금: " + 요금);
+						}
+						System.out.println("입금: "); int 돈 = sc.nextInt();
+						//요금정산
+						if(요금 <= 돈) {
+							machine.주차삭제(차량번호);
+							allDayPay.add(요금);
+							System.out.println("거스름돈: " + (돈 - 요금));
+							System.out.println("감사합니다 즐거운 하루되세요");
+						}else {
+							System.out.println("돈 부족");
+						}					
+					}		
 				}else if(ch == 3) { // 매출확인
 					System.out.println("**** 매출확인 ****");
 					System.out.println("연도: "); int year = sc.nextInt();
@@ -65,7 +74,8 @@ public class main {
 						System.out.println(month);
 						System.err.println("오류]](달의 번호를 제대로 입력해주세요.) 재시작 바람");					
 					}else{
-						machine.매출확인(year, month);
+					int 매출 = machine.매출확인(year, month, day);
+						System.out.println(year+"년" + month +"월" + day + "일 매출: " + 매출);
 					}				
 				}else { // 그외
 					System.out.println("에러)) 알수없는 행동");
