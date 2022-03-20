@@ -45,11 +45,18 @@ public class main {
 					}
 										
 				}else if(ch == 2) {	// 출자등록
-					System.out.println("차량번호"); String carnum = sc.next();
+					System.out.println("차량번호: "); String carnum = sc.next();
+					System.out.println("받은돈: ");
 					for(tower temp : tow) {
-						if(temp.carnum == carnum) {
+						if(temp.carnum.equals(carnum)) {
 							temp.차량삭제(carnum);
 							break;
+						}
+					}
+					// 요금정산 호출
+					for(tower temp : tow) {
+						if(temp.carnum.equals(carnum)) {
+							
 						}
 					}
 				}else if(ch == 3) { // 매출확인

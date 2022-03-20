@@ -22,7 +22,7 @@ public class tower {
 	//입차 시간
 	private ZonedDateTime parkStart = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
 	//출차 시간
-	private ZonedDateTime parkEnd = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+	private ZonedDateTime parkEnd;
 
 	public ZonedDateTime getParkStart() {
 		return parkStart;
@@ -48,6 +48,7 @@ public class tower {
 				return;
 			}
 		} // for e
+		parkEnd = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
 	} // 차량삭제 e
 	
 	public boolean carSave(){// 차량파일 저장 시작
