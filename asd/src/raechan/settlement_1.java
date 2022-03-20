@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
+import Parking01.machine;
 
 public class settlement_1 {
 	
@@ -31,23 +32,14 @@ public class settlement_1 {
 
 			//어레이리스트입력
 			ArrayList<Integer> allDayPay = new ArrayList<Integer>();	//임시어레이배열
-			allDayPay.add(0); //테스트 매출 1일차
-			allDayPay.add(5000); //테스트 매출 2일차
-			allDayPay.add(10000); //테스트 매출 3일차
-			allDayPay.add(500000); //테스트 매출 4일차
-			allDayPay.add(99000); //테스트 매출 5일차
-			allDayPay.add(23000); //테스트 매출 6일차
-			allDayPay.add(3000000); //테스트 매출 7일차
-			allDayPay.add(9999); //테스트 매출 8일차
-			allDayPay.add(54000); //테스트 매출 9일차
-			allDayPay.set(17, 50000);
+
 
 					
 			
 			
 			//매출 파일에 입력
 			try {
-				FileOutputStream outputStream = new FileOutputStream("C:/Users/gks01/팀프1.txt");
+				FileOutputStream outputStream = new FileOutputStream("C:/Users/박래찬/Desktop/코딩/java/팀프1.txt");
 				for(int i = 0 ; i<1000 ;i++) {
 					if(allDayPay.get(i)!=null) {
 						String 내보내기 = allDayPay.get(i)+"\n"; 
@@ -61,7 +53,7 @@ public class settlement_1 {
 			
 			//파일불러오기
 					//파일얻어오기
-			FileInputStream inputStream = new FileInputStream("C:/Users/gks01/팀프1.txt");
+			FileInputStream inputStream = new FileInputStream("C:/Users/박래찬/Desktop/코딩/java/팀프1.txt");
 			byte[] bytes = new byte[1024];
 			inputStream.read( bytes );
 			String 파일내용 = new String( bytes );
@@ -119,6 +111,10 @@ public class settlement_1 {
 					}
 				}
 			
+				else {
+					int hk = i+1;
+					System.out.print(hk +"일)없음"+"\t\t");
+				}
 				
 				if( sweek % 7 == 0 ) System.out.println(); // 토요일마다 줄바꿈처리 [ 토요일=7 ] 요일이 7배수마다
 				sweek++;  // 하루씩 요일 증가 
