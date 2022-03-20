@@ -1,183 +1,98 @@
 package Parking01;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Scanner;
 
 import raechan.settlement_1;
 
 public class machine {
-
-	int 날 = (int) parkStart.until(parkEnd, ChronoUnit.DAYS); 		// 출차시간 - 입차시간 (일)	
-	int 시 = (int) parkStart.until(parkEnd, ChronoUnit.HOURS);		// 출차시간 - 입차시간 (시간)
-	int 분 = (int) parkStart.until(parkEnd , ChronoUnit.MINUTES);	// 출차시간 - 입차시간 (분)
-	int 시간값 = 시 * 60; // 출차시간 - 입차시간 해서 나온 시간을 분으로 변경
-	int 총주차시간 = 시간값 + 분; // 총주차시간을 분으로 변경
-	int count = 0;
-	int[] AllDayPay = new int[100]; // 하루동안 받은 주차비용
 	
-	public machine() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public machine(int 날, int 시, int 분, int 시간값, int 총주차시간, int count, int[] allDayPay) {
-		super();
-		this.날 = 날;
-		this.시 = 시;
-		this.분 = 분;
-		this.시간값 = 시간값;
-		this.총주차시간 = 총주차시간;
-		this.count = count;
-		AllDayPay = allDayPay;
-	}
+	//1.메소드
 	
-	public int 요금정산(int 받을돈) {
-		if( 날 == 0 ) { // Day의 차가 0이면
-			총주차시간 -= 30; // 첫 주차시간 30분은 무료
-			while(true) {
-			if( 총주차시간 >= 10 ) { // 총주차시간이 10분 이하라면
-				총주차시간 -= 10;		// 10분마다 카운트
-				count++;
-			}else {
-				break;
-			}
-		}	int 주차비용 = count*1000;	// 카운트 * 1000원이 주차비용
-			
-				if( 주차비용 > 받을돈 ) { // 주차비용이 받을돈보다 많다면 돈이 부족하다
-					return -1;
-				}
-				else if(주차비용 < 받을돈) { // 주차비용이 받은돈 보다 많으면 거스름돈 주기
-					int 거스름돈 = 받을돈-주차비용;
-					return 거스름돈;
-				}			
-	}
-		
-		else if( 날 > 0 ) { // 주차시간이 하루를 넘겼을때
-			 int 주차비용 = 날 * 50000;
-			 if( 주차비용 > 받을돈 ) { // 주차비용이 받을돈보다 많다면 돈이 부족하다
-				 return -1;
-			 }
-			 else if( 주차비용 < 받을돈 ) { // 주차비용이 받은돈 보다 많으면 거스름돈 주기
-				 int 거스름돈 = 받을돈-주차비용;
-				 return 거스름돈;
-			 }
-		}	
-	}
-	
-	
-	//일별 매출출력
-	public static void dayPay() throws IOException {
-		//날짜 받기
-		Scanner scanner = new Scanner( System.in);
-		System.out.print(" 연도 :"); int year = scanner.nextInt();
-		System.out.print(" 월 :");	int month = scanner.nextInt();
-		if(month<1||month>12) {
-			System.err.println("오류]](달의 번호를 제대로 입력해주세요.) 재시작 바람");
-			settlement_1 again = new settlement_1();
-			again.dayPay();
-		}
-		else {
-
-			//어레이리스트입력
-			ArrayList<Integer> allDayPay = new ArrayList<Integer>();	//임시어레이배열
-			allDayPay.add(1000); //테스트 매출 1일차
-			allDayPay.add(5000); //테스트 매출 2일차
-			allDayPay.add(10000); //테스트 매출 3일차
-			allDayPay.add(500000); //테스트 매출 4일차
-			allDayPay.add(99000); //테스트 매출 5일차
-			allDayPay.add(23000); //테스트 매출 6일차
-			allDayPay.add(3000000); //테스트 매출 7일차
-			allDayPay.add(9999); //테스트 매출 8일차
-			allDayPay.add(54000); //테스트 매출 9일차		
-			
-			//매출 파일에 입력
-			try {
-				FileOutputStream outputStream = new FileOutputStream("D:/java/팀프1.txt");
-				for(int i = 0 ; i<1000 ;i++) {
-					if(allDayPay.get(i)!=null) {
-						String 내보내기 = allDayPay.get(i)+"\n"; 
-						outputStream.write( 내보내기.getBytes() );
-					}
-				}
-				
-			}catch( Exception e ) { // 예외[오류] 처리[잡기] : Exception 클래스
-			}
-			
-			
-			//파일불러오기
-					//파일얻어오기
-			FileInputStream inputStream = new FileInputStream("D:/java/팀프1.txt");
-			byte[] bytes = new byte[1024];
-			inputStream.read( bytes );
-			String 파일내용 = new String( bytes );
-			String[] 매출목록 = 파일내용.split("\n");
-		
-				//매출 파일에 저장하기
-			int h=0;
-			int vh = 0;
-			for( String temp : 매출목록 ) {
-			 
-				if(temp==null) {
-					break;
-				}
-				String r = (매출목록[h]) ;
-				//int 매출 = Integer.parseInt(r);   //Bytes로 저장된 파일의 내용을 String으로 바꾸고 int로 전환할했으나 String으로도 산관없이 출력됨
-				//allDayPay.add(매출);             //혹시모를 오류
-				h++;
-				vh=h;
-			}
-			
-			
-			//날짜대입
-			Calendar calendar = Calendar.getInstance();
-			calendar.set( year , month-1 , 1 ); 
-			
-			
-			
-			//달력출력
-			int sweek = calendar.get( Calendar.DAY_OF_WEEK ); 
-			int eday = calendar.getActualMaximum( Calendar.DAY_OF_MONTH );
-			System.out.println("\n\n********************** "+year+"년" + month+"월 ******************");
-			System.out.println("일\t\t월\t\t화\t\t수\t\t목\t\t금\t\t토");
-			for( int i = 1 ; i < sweek ; i++ ) { // 3월1일 = 화 = 3 
-				System.out.print("\t\t"); // 공백출력
-			}
-			for( int i = 0 ; i<eday ; i++ ) {
-				
-				if(i<=vh-2) {
-					Integer a = allDayPay.get(i);
-					if(a!= null) {
-						if(a>=1000) {
-							int j = i+1;
-							System.out.print(j+"일)"+a+"원\t");  // i = 일수 출력
-						}
-						else {
-							int j = i+1;
-							System.out.print(j+"일)"+a+"원\t\t");  // i = 일수 출력
-						}
-						
-						
-					}
-				}
-				else {
-					int hk = i+1;
-					System.out.print(hk +"일)미정"+"\t\t");
-				}
-				
-				
-				if( sweek % 7 == 0 ) System.out.println(); // 토요일마다 줄바꿈처리 [ 토요일=7 ] 요일이 7배수마다
-				sweek++;  // 하루씩 요일 증가 
-				
-			}
-					
-					
+	//주차등록
+	public static void 주차등록(String 주차번호, int 주차위치, ZonedDateTime now) { 
+		tower e = new tower(주차번호, 주차위치, now);
+		main.tow.add(e);
+		if(main.park[주차위치] == "[ ]") {
+			main.park[주차위치] = "["+주차번호+"]";
 		}
 		
-			
-	}
+	}//주차등록 end
 	
+	//주차삭제
+	public static void 주차삭제(String 차량번호) {
+		int i = 0;
+		for(tower temp : main.tow) {
+			if(temp.get차번호().equals(차량번호)) {
+				main.park[temp.get주차위치()] = "[ ]";
+				main.tow.remove(i);			
+			}
+			i++;
+		}
+	}// 주차삭제 end
+	
+	//요금계산
+	public static int 요금계산(String 차량번호, ZonedDateTime endnow) throws IOException {
+		for(tower temp : main.tow) {
+			if(temp.get차번호().equals(차량번호)) {
+				int 날 = (int) temp.get날짜().until(endnow, ChronoUnit.DAYS); 		// 출차시간 - 입차시간 (일)	
+				int 시 = (int) temp.get날짜().until(endnow, ChronoUnit.HOURS);		// 출차시간 - 입차시간 (시간)
+				int 분 = (int) temp.get날짜().until(endnow , ChronoUnit.MINUTES);	// 출차시간 - 입차시간 (분)
+				int 시간값 = 시 * 60; // 출차시간 - 입차시간 해서 나온 시간을 분으로 변경
+				int 총주차시간 = 시간값 + 분; // 총주차시간을 분으로 변경
+				int count = 0;
+				//int[] AllDayPay = new int[100]; // 하루동안 받은 주차비용
+				//계산
+				if( 날 == 0 ) { // Day의 차가 0이면
+					총주차시간 -= 30; // 첫 주차시간 30분은 무료
+					while (true) {
+						if(총주차시간 > 10) {
+							총주차시간 -= 10;
+							count++;
+						}else {	
+							break;
+						}
+					}
+				}else if( 날 > 0 ) { // 주차시간이 하루를 넘겼을때
+					매출파일처리(endnow,날 * 50000);
+					return 날 * 50000;
+				}
+				매출파일처리(endnow,count * 1000);
+				return count * 1000;
+			}// 같다면 ifend
+		}// 찾는거 for end
+		return -1;
+	}// 메소드 end
+	
+	//매출확인
+//	static void 매출파일처리(ZonedDateTime endnow,int 요금) throws IOException{
+//		//매출저장
+//		FileOutputStream out = new FileOutputStream("C:/Users/gks01/매출.txt", true);
+//		String storage = Integer.toString(endnow.getYear())+","+Integer.toString(endnow.getMonthValue())+","+Integer.toString(endnow.getDayOfMonth())+":"+Integer.toString(요금)+"\n";
+//		out.write(storage.getBytes());				
+//	}// 매출확인 end
+//	static int 매출확인(int year, int month , int day) throws IOException {
+//		
+//		int 일별매출 = 0;
+//		FileInputStream input = new FileInputStream("C:/Users/gks01/매출.txt");
+//		byte[] bytes = new byte[1024]; // 바이트배열선
+//		input.read(bytes);				// 바이트 읽기
+//		String str = new String(bytes); // 일어온거 저장
+//		String[] 회당매출 = str.split("\n");
+//		for(int i = 0; i < 회당매출.length ; i++) {
+//			if(회당매출[i] != null && 회당매출[i].contains(Integer.toString(year) +","+ Integer.toString(month)+","+Integer.toString(day))) {
+//				String[] 일별매출1 = 회당매출[i].split(":");
+//				int 매출 = 일별매출[1];
+//			}
+//		}
+	
+		
+	}
 }
