@@ -99,9 +99,10 @@ public class settlement_1 {
 			}
 			for( int i = 0 ; i<eday ; i++ ) {
 				
+				
 				if(i<=vh-2) {
-					Integer a = allDayPay.get(i);
-					if(a!= null) {
+					Integer a = machine.매출확인(year,month-1,i+1);
+					if(a!= 0) {
 						if(a>=1000) {
 							int j = i+1;
 							System.out.print(j+"일)"+a+"원\t");  // i = 일수 출력
@@ -110,15 +111,14 @@ public class settlement_1 {
 							int j = i+1;
 							System.out.print(j+"일)"+a+"원\t\t");  // i = 일수 출력
 						}
-						
-						
+					}
+				
+					else {
+						int hk = i+1;
+						System.out.print(hk +"일)없음"+"\t\t");
 					}
 				}
-				else {
-					int hk = i+1;
-					System.out.print(hk +"일)미정"+"\t\t");
-				}
-				
+			
 				
 				if( sweek % 7 == 0 ) System.out.println(); // 토요일마다 줄바꿈처리 [ 토요일=7 ] 요일이 7배수마다
 				sweek++;  // 하루씩 요일 증가 
