@@ -21,7 +21,7 @@ public class main {
 				int i = 0;
 				for(String tmep : park) {//출력
 					System.out.print(tmep);
-					if(i % 4 == 3) {
+					if(i % 4 == 3) {// 줄바꿈
 						System.out.println();
 					}
 					i++;
