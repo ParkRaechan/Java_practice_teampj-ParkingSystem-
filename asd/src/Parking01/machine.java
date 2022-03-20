@@ -62,7 +62,7 @@ public class machine {
 					}
 				}else if( 날 > 0 ) { // 주차시간이 하루를 넘겼을때
 					매출파일처리(endnow,날 * 50000);
-					return 날 * 50000;
+					return 1 * 50000;
 				}
 				매출파일처리(endnow,count * 1000);
 				return count * 1000;
@@ -72,26 +72,28 @@ public class machine {
 	}// 메소드 end
 	
 	//매출확인
-//	static void 매출파일처리(ZonedDateTime endnow,int 요금) throws IOException{
-//		//매출저장
-//		FileOutputStream out = new FileOutputStream("C:/Users/gks01/매출.txt", true);
-//		String storage = Integer.toString(endnow.getYear())+","+Integer.toString(endnow.getMonthValue())+","+Integer.toString(endnow.getDayOfMonth())+":"+Integer.toString(요금)+"\n";
-//		out.write(storage.getBytes());				
-//	}// 매출확인 end
-//	static int 매출확인(int year, int month , int day) throws IOException {
-//		
-//		int 일별매출 = 0;
-//		FileInputStream input = new FileInputStream("C:/Users/gks01/매출.txt");
-//		byte[] bytes = new byte[1024]; // 바이트배열선
-//		input.read(bytes);				// 바이트 읽기
-//		String str = new String(bytes); // 일어온거 저장
-//		String[] 회당매출 = str.split("\n");
-//		for(int i = 0; i < 회당매출.length ; i++) {
-//			if(회당매출[i] != null && 회당매출[i].contains(Integer.toString(year) +","+ Integer.toString(month)+","+Integer.toString(day))) {
-//				String[] 일별매출1 = 회당매출[i].split(":");
-//				int 매출 = 일별매출[1];
-//			}
-//		}
+	static void 매출파일처리(ZonedDateTime endnow,int 요금) throws IOException{
+		//매출저장
+		FileOutputStream out = new FileOutputStream("C:/Users/gks01/매출.txt", true);
+		String storage = Integer.toString(endnow.getYear())+","+Integer.toString(endnow.getMonthValue())+","+Integer.toString(endnow.getDayOfMonth())+":"+Integer.toString(요금)+"\n";
+		out.write(storage.getBytes());				
+	}// 매출확인 end
+	static int 매출확인(int year, int month , int day) throws IOException {
+		
+		int 일별매출 = 0;
+		FileInputStream input = new FileInputStream("C:/Users/gks01/매출.txt");
+		byte[] bytes = new byte[1024]; // 바이트배열선
+		input.read(bytes);				// 바이트 읽기
+		String str = new String(bytes); // 일어온거 저장
+		String[] 회당매출 = str.split("\n"); //1회 매출마다 자르기
+		for(int i = 0; i < 회당매출.length ; i++) {	// 회당매출길이만큼 반복
+			if(회당매출[i] != null && 회당매출[i].contains(Integer.toString(year) +","+ Integer.toString(month)+","+Integer.toString(day))) {// year,month,day 가 똑같으면
+				String[] 일별매출1 = 회당매출[i].split(":"); // :으로 금액자르기
+				int 매출 = Integer.parseInt(일별매출1[1]);	// int 형 변환
+				일별매출 += 매출;	// 일별매출 계속 플러스
+			}
+		}
+		return 일별매출; //일별매출 리턴
 	
 		
 	}
