@@ -15,7 +15,7 @@ import raechan.settlement_1;
 public class machine {
 	
 	//1.메소드
-	
+////정준영파트///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//주차등록
 	public static void 주차등록(String 주차번호, int 주차위치, ZonedDateTime now) { 
 		tower e = new tower(주차번호, 주차위치, now);
@@ -37,7 +37,7 @@ public class machine {
 			i++;
 		}
 	}// 주차삭제 end
-	
+/////김민기파트////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//요금계산
 	public static int 요금계산(String 차량번호, ZonedDateTime endnow) throws IOException {
 		for(tower temp : main.tow) {
@@ -70,7 +70,7 @@ public class machine {
 		}// 찾는거 for end
 		return -1;
 	}// 메소드 end
-	
+/////박래찬파트	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//매출확인
 	static void 매출파일처리(ZonedDateTime endnow,int 요금) throws IOException{
 		//매출저장
