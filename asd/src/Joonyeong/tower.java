@@ -56,7 +56,7 @@ public class tower {
 			fileOutputStream = new FileOutputStream("D:\\java\\parkSpace.txt");
 		String parkOutput = null;
 		for(int i = 0; i<12; i++) {
-		parkOutput = main.park[i]+",";
+		parkOutput = main.park[i]+","; // 쉼표로 구분
 		fileOutputStream.write(parkOutput.getBytes()); 
 		}
 		fileOutputStream.close();
