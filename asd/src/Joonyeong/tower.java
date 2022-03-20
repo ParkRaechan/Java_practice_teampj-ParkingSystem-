@@ -1,47 +1,69 @@
-package Joonyeong;
+package Parking01;
 
+import java.io.FileOutputStream;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-public class tower { // c s
-
-	static String[] parkSpace = {  "[ ]" , "[ ]" , "[ ]" , "[ ]" , 
-							"[ ]" , "[ ]" , "[ ]" , "[ ]" ,
-							"[ ]" , "[ ]" , "[ ]" , "[ ]" , };
-		// Â÷·®ÀÌ Â÷¸é "[o]" ºñ¸é "[ ]"
-	//ÀÔÂ÷ ½Ã°£
-	static ZonedDateTime parkStart = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
-	//ÃâÂ÷ ½Ã°£
-	static ZonedDateTime parkEnd = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+public class tower {
 	
-	public String[] getParkSpace() {
-		return parkSpace;
+	 String carnum; // ë²ˆí˜¸
+	 int parklo;	// ì£¼ì°¨ìœ„ì¹˜
+// ì°¨ëŸ‰ì´ ì°¨ë©´ "[o]" ë¹„ë©´ "[ ]"
+
+	public int getParklo() {
+		return parklo;
 	}
-	public void setParkspace(String[] parkSpace) {
-		this.parkSpace = parkSpace;
+
+	public void setParklo(String carnum, int parklo) {
+		this.carnum = carnum;
+		this.parklo = parklo;
 	}
+
+	//ì…ì°¨ ì‹œê°„
+	private ZonedDateTime parkStart = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+	//ì¶œì°¨ ì‹œê°„
+	private ZonedDateTime parkEnd = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+
 	public ZonedDateTime getParkStart() {
 		return parkStart;
 	}
-	public  ZonedDateTime getParkEnd() {
+
+	public ZonedDateTime getParkEnd() {
 		return parkEnd;
 	}
+	//ë©”ì†Œë“œ
 	
-	public static String[] Â÷·®µî·Ï(carNumber) { // Â÷·®µî·Ï s
-		for(int i = 0; i<12; i++) { // for s
-			if(parkSpace[i].equals("[ ]")) { // ÁÖÂ÷°ø°£ ÀÖÀ¸¸é
-				parkSpace[i] = {"[o]", parkStart, carNumber}; // ¹è¿­ ¾È¿¡ ¹è¿­
-				return parkSpace[i];
-			} // Â÷·® Ã¤¿ì°í ÀÔÂ÷½Ã°£ ¹è¿­ ÁßÃ¸À¸·Î ³Ö±â										
-		} // for e
-		return null;
-	} // Â÷·®µî·Ï e
-	
-	public static void Â÷·®»èÁ¦(carNumber) { // Â÷·®»èÁ¦ s
+	public void ì°¨ëŸ‰ë“±ë¡(String carNumber, int index) { // ì°¨ëŸ‰ë“±ë¡ s
+		carnum = carNumber; // ì°¨ë²ˆí˜¸ ì¸ìë¡œ ë°›ì–´ì„œ í•„ë“œì˜ ì €ì¥
+		parklo = index;		// ìœ„ì¹˜ë°›ì•„ì„œ í•„ë“œì— ì €ì¥
+		main.park[index] = "[" + carNumber + "]"; 
+		carSave();
+	} // ì°¨ëŸ‰ë“±ë¡ e
+
+	public void ì°¨ëŸ‰ì‚­ì œ(String carNumber) { // ì°¨ëŸ‰ì‚­ì œ s
 		for(int i=0; i<12; i++) { // for s
-			if(parkSpace[i][2].equals(carNumber)) { // Â÷·®¹øÈ£ ÀÏÄ¡ÇÏ¸é
-				parkSpace[i] = "[ ]"; return;
+			if(main.park[i].equals("[" + carNumber + "]")) { // ì°¨ëŸ‰ë²ˆí˜¸ ì¼ì¹˜í•˜ë©´
+				main.park[i] = "[ ]"; 
+				carSave();
+				return;
 			}
 		} // for e
-	} // Â÷·®»èÁ¦ e
-} // c s
+	} // ì°¨ëŸ‰ì‚­ì œ e
+	
+	public boolean carSave(){ // ì°¨ëŸ‰íŒŒì¼ ì €ì¥ ì‹œì‘
+		FileOutputStream fileOutputStream;
+		try {
+			fileOutputStream = new FileOutputStream("D:\\java\\parkSpace.txt");
+		String parkOutput = null;
+		for(int i = 0; i<12; i++) {
+		parkOutput = main.park[i]+",";
+		fileOutputStream.write(parkOutput.getBytes()); 
+		}
+		fileOutputStream.close();
+		return true;
+	}catch (Exception e) {
+				e.printStackTrace();
+	 return false; // ì €ì¥ ì‹¤íŒ¨
+	} // ì°¨ëŸ‰íŒŒì¼ ì €ì¥ e
+}
+}
