@@ -66,17 +66,8 @@ public class main {
 						}					
 					}		
 				}else if(ch == 3) { // 매출확인
-					System.out.println("**** 매출확인 ****");
-					System.out.println("연도: "); int year = sc.nextInt();
-					System.out.println("월: "); int month = sc.nextInt();
-					System.out.println("일: "); int day = sc.nextInt();
-					if(month <= 1 && month >= 12) {
-						System.out.println(month);
-						System.err.println("오류]](달의 번호를 제대로 입력해주세요.) 재시작 바람");					
-					}else{
-					int 매출 = machine.매출확인(year, month, day);
-						System.out.println(year+"년" + month +"월" + day + "일 매출: " + 매출);
-					}				
+					settlement_1.dayPay();
+									
 				}else { // 그외
 					System.out.println("에러)) 알수없는 행동");
 				}
