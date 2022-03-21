@@ -78,7 +78,7 @@ public class machine {
 		String storage = Integer.toString(endnow.getYear())+","+Integer.toString(endnow.getMonthValue())+","+Integer.toString(endnow.getDayOfMonth())+":"+Integer.toString(요금)+"\n";
 		out.write(storage.getBytes());				
 	}// 매출확인 end
-	static int 매출확인(int year, int month , int day) throws IOException {
+	public static int 매출확인(int year, int month , int day) throws IOException {
 		
 		int 일별매출 = 0;
 		FileInputStream input = new FileInputStream("C:/Users/gks01/매출.txt");
