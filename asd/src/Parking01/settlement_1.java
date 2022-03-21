@@ -1,18 +1,9 @@
 package Parking01;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
 public class settlement_1 {
-	
-	
-	//***************************************************************************
-	//////1일부터 출력되는 메소드이기때문에 시작일을 1로 잡아야한다!!!
-	//////시작일이 1이 아니라면 시작일전까지 0원 파일에 입력할 것!!!
-	//***************************************************************************
 	
 	
 	//일별 매출 메소드
@@ -28,52 +19,6 @@ public class settlement_1 {
 		}
 		else {
 
-			//어레이리스트입력
-			ArrayList<Integer> allDayPay = new ArrayList<Integer>();	//임시어레이배열
-
-
-					
-			
-			
-			//매출 파일에 입력
-			//백업파일
-			try {
-				FileOutputStream outputStream = new FileOutputStream("D:/java/팀프1.txt");
-				for(int i = 0 ; i<1000 ;i++) {
-					if(allDayPay.get(i)!=null) {
-						String 내보내기 = allDayPay.get(i)+"\n"; 
-						outputStream.write( 내보내기.getBytes() );
-					}
-				}
-				
-			}catch( Exception e ) { // 예외[오류] 처리[잡기] : Exception 클래스
-			}
-			
-			
-			//파일불러오기
-			//백업파일
-				//파일얻어오기
-			FileInputStream inputStream = new FileInputStream("D:/java/팀프1.txt");
-			byte[] bytes = new byte[1024];
-			inputStream.read( bytes );
-			String 파일내용 = new String( bytes );
-			String[] 매출목록 = 파일내용.split("\n");
-		
-				//매출 파일에 저장하기
-			int h=0;
-			int vh = 0;
-			for( String temp : 매출목록 ) {
-			 
-				if(temp==null) {
-					break;
-				}
-				String r = (매출목록[h]) ;
-				//int 매출 = Integer.parseInt(r);   //Bytes로 저장된 파일의 내용을 String으로 바꾸고 int로 전환할했으나 String으로도 산관없이 출력됨
-				//allDayPay.add(매출);             //혹시모를 오류
-				h++;
-				vh=h;
-			}
-			
 			
 			//날짜대입
 			Calendar calendar = Calendar.getInstance();
@@ -91,8 +36,7 @@ public class settlement_1 {
 			}
 			for( int i = 0 ; i<eday ; i++ ) {
 				
-				
-				
+				//매출불러오기
 				Integer a = machine.매출확인(year,month-1,i+1);
 				if(a!= 0) {
 					if(a>=1000) {
