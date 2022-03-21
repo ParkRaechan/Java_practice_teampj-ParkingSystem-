@@ -39,7 +39,7 @@ public class settlement_1 {
 			
 			//매출 파일에 입력
 			try {
-				FileOutputStream outputStream = new FileOutputStream("C:/Users/Public/504/java/팀프1.txt");
+				FileOutputStream outputStream = new FileOutputStream("D:/java/팀프1.txt");
 				for(int i = 0 ; i<1000 ;i++) {
 					if(allDayPay.get(i)!=null) {
 						String 내보내기 = allDayPay.get(i)+"\n"; 
@@ -53,7 +53,7 @@ public class settlement_1 {
 			
 			//파일불러오기
 					//파일얻어오기
-			FileInputStream inputStream = new FileInputStream("C:/Users/Public/504/java/팀프1.txt");
+			FileInputStream inputStream = new FileInputStream("D:/java/팀프1.txt");
 			byte[] bytes = new byte[1024];
 			inputStream.read( bytes );
 			String 파일내용 = new String( bytes );
@@ -121,6 +121,7 @@ public class settlement_1 {
 				
 			}
 					
+			System.out.println();
 					
 		}
 		

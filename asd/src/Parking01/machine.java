@@ -74,14 +74,14 @@ public class machine {
 	//매출확인
 	static void 매출파일처리(ZonedDateTime endnow,int 요금) throws IOException{
 		//매출저장
-		FileOutputStream out = new FileOutputStream("C:/Users/Public/504/java/매출.txt", true);
+		FileOutputStream out = new FileOutputStream("D:/java/매출.txt", true);
 		String storage = Integer.toString(endnow.getYear())+","+Integer.toString(endnow.getMonthValue())+","+Integer.toString(endnow.getDayOfMonth())+":"+Integer.toString(요금)+"\n";
 		out.write(storage.getBytes());				
 	}// 매출확인 end
 	public static int 매출확인(int year, int month , int day) throws IOException {
 		
 		int 일별매출 = 0;
-		FileInputStream input = new FileInputStream("C:/Users/Public/504/java/매출.txt");
+		FileInputStream input = new FileInputStream("D:/java/매출.txt");
 		byte[] bytes = new byte[1024]; // 바이트배열선
 		input.read(bytes);				// 바이트 읽기
 		String str = new String(bytes); // 일어온거 저장
