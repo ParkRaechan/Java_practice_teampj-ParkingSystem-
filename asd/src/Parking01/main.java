@@ -4,8 +4,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import raechan.settlement_1;
-
 public class main {
 	static String[] park = {"[ ]","[ ]","[ ]","[ ]",
 							"[ ]","[ ]","[ ]","[ ]",

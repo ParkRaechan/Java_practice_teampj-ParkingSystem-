@@ -1,12 +1,10 @@
-package raechan;
+package Parking01;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
-import Parking01.machine;
 
 public class settlement_1 {
 	
