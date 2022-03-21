@@ -38,6 +38,7 @@ public class settlement_1 {
 			
 			
 			//매출 파일에 입력
+			//백업파일
 			try {
 				FileOutputStream outputStream = new FileOutputStream("D:/java/팀프1.txt");
 				for(int i = 0 ; i<1000 ;i++) {
@@ -52,7 +53,8 @@ public class settlement_1 {
 			
 			
 			//파일불러오기
-					//파일얻어오기
+			//백업파일
+				//파일얻어오기
 			FileInputStream inputStream = new FileInputStream("D:/java/팀프1.txt");
 			byte[] bytes = new byte[1024];
 			inputStream.read( bytes );
