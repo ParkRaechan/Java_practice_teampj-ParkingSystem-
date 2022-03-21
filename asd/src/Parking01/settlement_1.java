@@ -37,7 +37,7 @@ public class settlement_1 {
 			for( int i = 0 ; i<eday ; i++ ) {
 				
 				//매출불러오기
-				Integer a = machine.매출확인(year,month-1,i+1);
+				Integer a = machine.매출확인(year,month,i+1);
 				if(a!= 0) {
 					if(a>=1000) {
 						int j = i+1;
